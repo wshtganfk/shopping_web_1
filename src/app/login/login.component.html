@@ -1,0 +1,17 @@
+<p>login works!</p>
+<form [formGroup]="fBuilder">
+  <label>Username</label>
+    <input
+      type="text"
+      name="username"
+      formControlName="username" 
+      placeholder="Username">
+      <label>Password</label>
+    <input
+      type="password"
+      name="password"
+      formControlName="password" 
+      placeholder="Password">
+    <button (click)="onClick()">Submit</button>
+  </form>
+  

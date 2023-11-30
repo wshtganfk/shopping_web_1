@@ -1,0 +1,25 @@
+<p>resgister works!</p>
+<form [formGroup]="fBuilder">
+    <label>Username</label>
+      <input
+        type="text"
+        name="username"
+        formControlName="username" 
+        placeholder="Username">
+
+    <label>email</label>
+        <input
+          type="text"
+          name="email"
+          formControlName="email" 
+          placeholder="Email">
+
+    <label>Password</label>
+      <input
+        type="password"
+        name="password"
+        formControlName="password" 
+        placeholder="Password">
+      <button (click)="onClick()">Submit</button>
+    </form>
+    
