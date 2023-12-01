@@ -10,8 +10,8 @@ export class orderService {
   constructor(private http: HttpClient) {
   }
  
- 
-  PlaceNewOrder(order:InputOrder): Observable<any> {
+
+  PlaceNewOrder(order:{}): Observable<any> {
     const headers = { 'content-type': 'application/json'}  
     const body=JSON.stringify(order);
     return this.http.post(this.baseURL, body, {'headers':headers})
@@ -37,4 +37,9 @@ export class orderService {
     return this.http.get(this.baseURL + `/` + id + `?status=complete`, {'headers':headers})
   }
  
+}
+
+interface InputOrder{
+  productId:BigInt;
+  quantity:number;
 }

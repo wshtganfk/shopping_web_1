@@ -17,6 +17,7 @@ export class userService {
 //   }
  
   Login(user:UserLogin): Observable<any> {
+    console.log("in user login service")
    return this.http.post(this.baseURL + '/login', user);
   }
 
@@ -25,6 +26,12 @@ export class userService {
     const body=JSON.stringify(user);
     console.log(body)
     return this.http.post(this.baseURL, body,{'headers':headers})
+  }
+
+  Logout():String{
+    localStorage.removeItem('token');
+    return "logged out"
+
   }
  
 }

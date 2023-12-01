@@ -24,18 +24,25 @@ export class InterceptorService implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     const TOKEN = localStorage.getItem('token');
     const headersConfig = {};
-    if(TOKEN){
-      const accessToken = JSON.parse(TOKEN).accessToken;
+    
+    if(!request.url.includes("/login") && TOKEN){
+   
+      const accessToken = JSON.parse(TOKEN).token;
+      console.log("in intercept")
+      
       if(this.jwtHelper.isTokenExpired(TOKEN)){
         localStorage.removeItem('token');
-        this.router.navigate(['/login'];)
+        this.router.navigate(['/login'])
       }else{
+        console.log("tokenb"+accessToken)
         request = request.clone({
           setHeaders:{
-            Authorization: `Bearer ${accessToken}`
+            Authorization: 'Bearer ' + accessToken
           }
         });
       }
+    }else{
+      this.router.navigate(['/login'])
     }
     return next.handle(request);
     

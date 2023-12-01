@@ -13,8 +13,8 @@ export class productService {
  
 
   GetAllProduct(): Observable<any> {
-    const headers = { 'content-type': 'application/json'}  
-    return this.http.get(this.baseURL, {'headers':headers})
+   
+    return this.http.get(this.baseURL)
   }
 
   GetProductById(id:BigInteger): Observable<any> {
@@ -23,7 +23,7 @@ export class productService {
   }
 
   AddNewProduct(product:InputProduct): Observable<any> {
-    const headers = { 'content-type': 'application/json'}  
+    const headers = { 'content-type': 'application/json', 'Access-Control-Allow-Origin':'*'}  
     const body=JSON.stringify(product);
     return this.http.post(this.baseURL, body, {'headers':headers})
   }
@@ -56,4 +56,13 @@ export class productService {
 
 
  
+}
+
+
+interface InputProduct{
+  name:string;
+  description:string;
+  wholesale_price:number;
+  retail_price:number;
+  quantity:number;
 }

@@ -11,6 +11,23 @@
         <td>{{product.description}}</td>
         <td>{{product.price}}</td>
         <td>{{product.quantity}}</td>
-        <button>Add to Cart</button>
+        <button (click)="onClick(product.product_id, product.name, product.quantity)">Add to Cart</button>
     </tr>
 </table>
+
+
+<p>Cart:::</p>
+
+<form>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+    </tr>
+    <tr *ngFor="let product of productMap | keyvalue">
+        <td>{{product.value.name}}</td>
+        <td>{{product.value.quantity}}</td>
+    </tr>
+</table> 
+<button (click)="placeOrder()" >Checkout</button>
+</form>

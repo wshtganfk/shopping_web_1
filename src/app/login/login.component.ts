@@ -35,20 +35,13 @@ export class LoginComponent implements OnInit {
     }
 
     this.userService.Login(user).subscribe(data =>{
-
+      console.log("in login")
       if(data["success"] == true){
         localStorage.setItem('token', JSON.stringify({ token: data["token"] }));
         this.router.navigate(['/products'])
       }else{
         alert(data["message"]);
       }
-
-
-
-      // var token = JSON.parse(localStorage.getItem('token')  || '{}');
-      
-
-
     })
 
   }
