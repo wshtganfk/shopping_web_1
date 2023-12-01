@@ -1,4 +1,4 @@
-<p>products works!</p>
+<label>products </label>
 <table>
     <tr>
         <th>Name</th>
@@ -9,16 +9,42 @@
     <tr *ngFor="let product of list">
         <td>{{product.name}}</td>
         <td>{{product.description}}</td>
-        <td>{{product.price}}</td>
+        <td>{{product.retail_price}}</td>
         <td>{{product.quantity}}</td>
+        <button (click)="toDetail(product.product_id)" >Product Detail</button>
         <button (click)="onClick(product.product_id, product.name, product.quantity)">Add to Cart</button>
+        <button (click)="AddWatchlist(product.product_id)" >Add to Watchlist</button>
     </tr>
 </table>
 
 
-<p>Cart:::</p>
 
 <form>
+    <label>Product Detail</label>
+    <table>
+        <tr>
+            <th>Product Id</th>
+            <th>Description</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Retail Price</th>
+            <th>Wholesale Price</th>
+        </tr>
+        <tr>
+            <td>{{detailProduct?.product_id}}</td>
+            <td>{{detailProduct?.description}}</td>
+            <td>{{detailProduct?.name}}</td>
+            <td>{{detailProduct?.quantity}}</td>
+            <td>{{detailProduct?.retail_price}}</td>
+            <td>{{detailProduct?.wholesale_price}}</td>
+
+        </tr>
+    </table> 
+</form>
+
+
+<form>
+    <label>ShoppingCart:::</label>
 <table>
     <tr>
         <th>Name</th>
@@ -31,3 +57,92 @@
 </table> 
 <button (click)="placeOrder()" >Checkout</button>
 </form>
+<div></div>
+
+<div>
+    <app-child [inputFromParent]="detailProduct"></app-child>
+
+</div>
+
+<form>
+    <button (click)="MostFrequ()">MostFrequentlyPurchasedProduct</button>
+
+    <table>
+        <tr>
+            <th>Product Id</th>
+            <th>Description</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Retail Price</th>
+        </tr>
+        <tr *ngFor="let product of mostFreqProductList">
+            <td>{{product?.product_id}}</td>
+            <td>{{product?.description}}</td>
+            <td>{{product?.name}}</td>
+            <td>{{product?.quantity}}</td>
+            <td>{{product?.retail_price}}</td>
+        </tr>
+    </table> 
+</form>
+
+<form>
+    <button (click)="MostRecently()">MostRecentlyPurchasedProduct</button>
+    <table>
+        <tr>
+            <th>Product Id</th>
+            <th>Description</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Retail Price</th>
+        </tr>
+        <tr *ngFor="let product of mostRecentProductList">
+            <td>{{product?.product_id}}</td>
+            <td>{{product?.description}}</td>
+            <td>{{product?.name}}</td>
+            <td>{{product?.quantity}}</td>
+            <td>{{product?.retail_price}}</td>
+        </tr>
+    </table> 
+</form>
+
+<form>
+    <button (click)="MostProfit()">MostProfitableProduct - Top 3</button>
+    <table>
+        <tr>
+            <th>Product Id</th>
+            <th>Description</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Retail Price</th>
+        </tr>
+        <tr *ngFor="let product of mostProfitProductList">
+            <td>{{product?.product_id}}</td>
+            <td>{{product?.description}}</td>
+            <td>{{product?.name}}</td>
+            <td>{{product?.quantity}}</td>
+            <td>{{product?.retail_price}}</td>
+        </tr>
+    </table> 
+</form>
+
+<form>
+    <button (click)="MostPopular()">MostPopularProduct - Top 3</button>
+    <table>
+        <tr>
+            <th>Product Id</th>
+            <th>Description</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Retail Price</th>
+        </tr>
+        <tr *ngFor="let product of mostPopularProductList">
+            <td>{{product?.product_id}}</td>
+            <td>{{product?.description}}</td>
+            <td>{{product?.name}}</td>
+            <td>{{product?.quantity}}</td>
+            <td>{{product?.retail_price}}</td>
+        </tr>
+    </table> 
+</form>
+
+

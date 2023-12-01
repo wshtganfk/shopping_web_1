@@ -1,0 +1,91 @@
+
+<form [formGroup]="productBuilder">
+    <label>updateProduct</label>
+    <table>
+        <tr>
+            <th>Product Id</th>
+            <th>Description</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Retail Price</th>
+            <th>Wholesale Price</th>
+            
+        </tr>
+        <tr>
+            <td><input required value={{inputFromParent?.product_id}}
+                type="number"
+                name="product_id"
+                formControlName="product_id" 
+                placeholder="product_id"></td>
+            <td><input required value={{inputFromParent?.description}}
+                type="text"
+                name="description"
+                formControlName="description" 
+                placeholder="description"></td>
+            <td><input required value={{inputFromParent?.name}}
+                type="text"
+                name="name"
+                formControlName="name" 
+                placeholder="name"></td>
+            <td><input required value={{inputFromParent?.quantity}}
+                type="number"
+                name="quantity"
+                formControlName="quantity" 
+                placeholder="quantity"></td>
+            <td><input required value={{inputFromParent?.retail_price}}
+                type="number"
+                name="retail_price"
+                formControlName="retail_price" 
+                placeholder="retail_price"></td>
+            <td><input required value={{inputFromParent?.wholesale_price}}
+                type="number"
+                name="wholesale_price"
+                formControlName="wholesale_price" 
+                placeholder="wholesale_price"></td>
+            <button (click)="update()">Update</button>
+        </tr>
+    </table> 
+</form>
+
+<form [formGroup]="productBuilder_1">
+    <label>AddProduct</label>
+    <table>
+        <tr>
+            <th>Description</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Retail Price</th>
+            <th>Wholesale Price</th>
+            
+        </tr>
+        <tr>
+
+            <td><input 
+                type="text"
+                name="description"
+                formControlName="description" 
+                placeholder="description"></td>
+            <td><input 
+                type="text"
+                name="name"
+                formControlName="name" 
+                placeholder="name"></td>
+            <td><input 
+                type="number"
+                name="quantity"
+                formControlName="quantity" 
+                placeholder="quantity"></td>
+            <td><input 
+                type="number"
+                name="retail_price"
+                formControlName="retail_price" 
+                placeholder="retail_price"></td>
+            <td><input 
+                type="number"
+                name="wholesale_price"
+                formControlName="wholesale_price" 
+                placeholder="wholesale_price"></td>
+            <button (click)="add()">submit</button>
+        </tr>
+    </table> 
+</form>

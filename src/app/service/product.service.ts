@@ -17,7 +17,7 @@ export class productService {
     return this.http.get(this.baseURL)
   }
 
-  GetProductById(id:BigInteger): Observable<any> {
+  GetProductById(id:BigInt|undefined): Observable<any> {
     const headers = { 'content-type': 'application/json'}  
     return this.http.get(this.baseURL + `/` + id,{'headers':headers})
   }
@@ -28,10 +28,10 @@ export class productService {
     return this.http.post(this.baseURL, body, {'headers':headers})
   }
 
-  UpdateProduct(product:InputProduct, id:BigInteger): Observable<any> {
+  UpdateProduct(product:InputProduct, id:BigInteger|any): Observable<any> {
     const headers = { 'content-type': 'application/json'}  
     const body=JSON.stringify(product);
-    return this.http.post(this.baseURL + `/` + id, body, {'headers':headers})
+    return this.http.patch(this.baseURL + `/` + id, body, {'headers':headers})
   }
 
   getMostRecentlyPurchasedProduct(): Observable<any> {
@@ -50,7 +50,7 @@ export class productService {
   }
   TopThreePopularProduct(): Observable<any> {
     const headers = { 'content-type': 'application/json'}  
-    return this.http.get(this.baseURL + `popular?limit=3`, {'headers':headers})
+    return this.http.get(this.baseURL + `/popular?limit=3`, {'headers':headers})
   }
 
 

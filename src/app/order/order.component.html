@@ -1,1 +1,43 @@
-<p>order works!</p>
+<p>orders</p>
+
+<table>
+    <tr>
+        <th>order id</th>
+        <th>date placed</th>
+        <th>order status</th>
+        
+    </tr>
+    <tr *ngFor="let order of list">
+        <td>{{order.order_id}}</td>
+        <td>{{order.date_placed}}</td>
+        <td>{{order.order_status}}</td>
+        <button (click)="toCancel(order.order_id)" >Cancel Order</button>
+        <button (click)="toComplete(order.order_id)" >Complete Order</button>
+
+        <button (click)="toDetail(order.order_id)">Order Detail</button>
+    </tr>
+</table>
+
+
+<form>
+    <label>Order Detail</label>
+    <table>
+        <tr>
+            <th>Product Id</th>
+            <th>Description</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Retail Price</th>
+        </tr>
+        <tr *ngFor="let product of productList">
+            <td>{{product?.product_id}}</td>
+            <td>{{product?.description}}</td>
+            <td>{{product?.name}}</td>
+            <td>{{product?.quantity}}</td>
+            <td>{{product?.retail_price}}</td>
+        </tr>
+    </table> 
+    <div>Total Price:</div>
+    <a>{{total_price | number:'1.2-2'}}</a>
+</form>
+

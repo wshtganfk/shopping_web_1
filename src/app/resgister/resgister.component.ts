@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { userService } from '../service/user.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+
 import { emptyValidator } from '../empty.validator';
 import {Router} from '@angular/router';
 
@@ -36,7 +37,7 @@ export class ResgisterComponent implements OnInit{
 
     }
 
-    this.userService.Login(user).subscribe(data =>{
+    this.userService.Register(user).subscribe(data =>{
       console.log(data);
       if(data["success"] == true){
         this.router.navigate(['/login']);

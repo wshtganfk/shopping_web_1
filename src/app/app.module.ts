@@ -10,6 +10,7 @@ import { ResgisterComponent } from './resgister/resgister.component';
 import { HttpClientModule } from '@angular/common/http';
 import { WatchlistComponent } from './watchlist/watchlist.component';
 import { OrderComponent } from './order/order.component';
+import { UpdateProduceComponent } from './products/update-produce/update-produce.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +18,8 @@ import { OrderComponent } from './order/order.component';
     ProductsComponent,
     ResgisterComponent,
     WatchlistComponent,
-    OrderComponent
+    OrderComponent,
+    UpdateProduceComponent,
   ],
   imports: [
     BrowserModule,

@@ -11,11 +11,6 @@ export class userService {
   constructor(private http: HttpClient) {
   }
  
-//   getPeople(): Observable<BackendResponse[]> {
-//     console.log('getPeople '+this.baseURL + 'people')
-//     return this.http.get<Person[]>(this.baseURL + 'people')
-//   }
- 
   Login(user:UserLogin): Observable<any> {
     console.log("in user login service")
    return this.http.post(this.baseURL + '/login', user);
@@ -30,7 +25,7 @@ export class userService {
 
   Logout():String{
     localStorage.removeItem('token');
-    return "logged out"
+    return "logged out";
 
   }
  

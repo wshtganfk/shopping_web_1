@@ -5,6 +5,7 @@ import { productService } from '../service/product.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { orderService } from '../service/order.service';
 import { Route, Router } from '@angular/router';
+import { watchlistService } from '../service/watchlist.service';
 
 @Component({
   selector: 'app-products',
@@ -15,12 +16,14 @@ export class ProductsComponent implements OnInit{
 
   constructor(private productService: productService,
               private orderService: orderService,
+              private watchlistService:watchlistService,
               private router:Router
     ){}
 
   list:Array<any> = [];
-  // page:Number = 0;
-  productMap = new Map<BigInt, product>();
+  productMap = new Map<BigInt, cartProduct>();
+  detailProduct:detailProduct | undefined;
+  display:boolean = false;
 
   ngOnInit(): void {
     this.productService.GetAllProduct().subscribe(data => {
@@ -38,7 +41,7 @@ export class ProductsComponent implements OnInit{
       alert("no more left");
       return;
     }
-    let tempProduct : product = {
+    let tempProduct : cartProduct = {
       id:productId,
       name: iname,
       quantity: 1
@@ -51,16 +54,63 @@ export class ProductsComponent implements OnInit{
           alert("no more left");
           return;
         }
-  
         currentProduct!.quantity = currentProduct!.quantity+ 1 ;
-        
         this.productMap.set(productId, currentProduct!);
         
     }
     
   }
-  orderlist:Array<InputOrder> = [];
 
+  toDetail(productId:BigInt){
+    this.display = true;
+    this.productService.GetProductById(productId).subscribe(e => {
+      this.detailProduct = e["data"];
+    })
+  }
+
+  AddWatchlist(product_Id:BigInt){
+    const input: InputWatchList = {
+      productId:product_Id.toString()
+
+    }
+    this.watchlistService.AddNewWatchlist(input).subscribe(e => {
+      alert(e["message"])
+    })
+  }
+
+  mostFreqProductList: Array<detailProduct> = [];
+
+  MostFrequ(){
+    this.productService.getMostFrequentlyPurchasedProduct().subscribe(e =>{
+      console.log(e["data"]);
+        this.mostFreqProductList = e["data"];
+    })
+  }
+
+  mostRecentProductList:Array<detailProduct> = [];
+  MostRecently(){
+    this.productService.getMostRecentlyPurchasedProduct().subscribe(e =>{
+      console.log(e["data"]);
+
+        this.mostRecentProductList = e["data"];
+    })
+  }
+
+  mostProfitProductList:Array<detailProduct> = [];
+  MostProfit(){
+    this.productService.getMostProfitableProduct().subscribe(e => {
+      this.mostProfitProductList = e["data"];
+    })
+  }
+
+  mostPopularProductList:Array<detailProduct> = [];
+  MostPopular(){
+    this.productService.TopThreePopularProduct().subscribe(e => {
+      this.mostPopularProductList = e["data"];
+    })
+  }
+
+  orderlist:Array<InputOrder> = [];
 
   placeOrder(){
     this.productMap.forEach(e => {
@@ -76,6 +126,7 @@ export class ProductsComponent implements OnInit{
     }
     
       this.orderService.PlaceNewOrder(request).subscribe(e => {
+        console.log("inplacing")
         if(e["success"] == true){
           alert(e["message"]);
           this.router.navigate(["/orders"]);
@@ -89,7 +140,7 @@ export class ProductsComponent implements OnInit{
 
 
 
-interface product {
+interface cartProduct {
   id: BigInt ;
   name: String;
   quantity: number;
@@ -97,4 +148,15 @@ interface product {
 interface InputOrder{
   productId:BigInt;
   quantity:number;
+}
+interface detailProduct{
+  product_id:BigInt;
+  description: string,
+  name: string,
+  quantity: number,
+  retail_price: number,
+  wholesale_price: number
+}
+interface InputWatchList{
+  productId:string;
 }

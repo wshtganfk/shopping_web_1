@@ -29,12 +29,12 @@ export class orderService {
 
   CancelOrder(id:BigInt): Observable<any> {
     const headers = { 'content-type': 'application/json'}  
-    return this.http.get(this.baseURL + `/` + id + `?status=cancel`, {'headers':headers})
+    return this.http.patch(this.baseURL + `/` + id + `?status=cancel`, {'headers':headers})
   }
 
   CompleteOrder(id:BigInt): Observable<any> {
     const headers = { 'content-type': 'application/json'}  
-    return this.http.get(this.baseURL + `/` + id + `?status=complete`, {'headers':headers})
+    return this.http.patch(this.baseURL + `/` + id + `?status=complete`, {'headers':headers})
   }
  
 }

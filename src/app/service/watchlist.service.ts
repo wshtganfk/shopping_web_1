@@ -23,9 +23,13 @@ export class watchlistService {
     return this.http.post(this.baseURL, body, {'headers':headers})
   }
 
-  DeleteWatchlist(id:BigInteger): Observable<any> {
+  DeleteWatchlist(id:BigInt): Observable<any> {
     const headers = { 'content-type': 'application/json'}  
     return this.http.delete(this.baseURL + `/` + id,{'headers':headers})
   }
  
+}
+
+interface InputWatchList{
+  productId:string;
 }

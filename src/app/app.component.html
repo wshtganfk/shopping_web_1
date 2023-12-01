@@ -1,9 +1,12 @@
 
 <div>
-  <a routerLink="/login">Login</a>
-  <a routerLink="/register">register</a>
-  <a routerLink="/products">products</a>
-
+  <button (click)="onLogin()" routerLink="/login" *ngIf="!loginStatus">Login</button>
+  <button (click)="onClick()" *ngIf="loginStatus">Logout</button>
+  <button routerLink="/register">register</button>
+  <button routerLink="/products" *ngIf="loginStatus">products</button>
+  <button routerLink="/orders" *ngIf="loginStatus">order</button>
+  <button routerLink="/watchlist" *ngIf="loginStatus">watchlist</button>
 </div>
 
 <router-outlet></router-outlet>
+

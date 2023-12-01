@@ -1,1 +1,22 @@
-<p>watchlist works!</p>
+
+<form>
+    <label>watchlist</label>
+    <table>
+        <tr>
+            <th>Product Id</th>
+            <th>Description</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Retail Price</th>
+        </tr>
+        <tr *ngFor="let product of watchlist">
+            <td>{{product.product_id}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.retail_price}}</td>
+            <button (click)="toRemove(product.product_id)" >Remove</button>
+
+        </tr>
+    </table> 
+</form>
